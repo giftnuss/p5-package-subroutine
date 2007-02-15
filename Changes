@@ -1,0 +1,3 @@
+0.05 string syntax to import, was removed from the API 
+0.04 shortcut _ for current package
+0.03 Public release is poorly without tests.
