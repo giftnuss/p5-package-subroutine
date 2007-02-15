@@ -1,5 +1,7 @@
-  package from
+  package Package::Subroutine
+# ***************************
 ; our $VERSION = '0.05'
+# *********************
 
 ; sub export 
     { my $ns = (caller(1))[0]
@@ -36,40 +38,46 @@
     ; eval { UNIVERSAL::VERSION($pkg) }
     }
 
+; sub install
+   { my ($pkg,$target,$name,$coderef)=@_
+   ; $target="${target}::${name}"
+   ; *$target = $coderef
+   }
+
 ; 1
 
 __END__
 
 =head1 NAME
 
-from - minimalistic import and export modul
+Package::Subroutine - minimalistic import and export modul
 
 =head1 SYNOPSIS
 
 Exporting functions from a module is very simple.
 
-   ; package Recipe::Condiment; use from
+   ; package Recipe::Condiment; use Package::Subroutine
    ; sub import
-      { export from _ => qw/required optional var/ }
+      { export Package::Subroutine _ => qw/required optional var/ }
 
 You can import too.
 
-   ; import from 'Various::Types' => qw/string email/
+   ; import Package::Subroutine 'Various::Types' => qw/string email/
 
 And you can build a relay for your subroutines.                                 
                                                                                 
    ; package SubRelay                                                           
                                                                                 
    ; sub import                                                                 
-       { export from FooModule => qw/foo fun/                                   
-       ; export from BarPackage => qw/bar geld/                                 
+       { export Package::Subroutine FooModule => qw/foo fun/                                   
+       ; export Package::Subroutine BarPackage => qw/bar geld/                                 
        }   
 
 And you can get and compare version numbers with this module.
 
-   ; say "SOTA" if version from 'Xpose::Nature' => 0.99
+   ; say "SOTA" if version Package::Subroutine 'Xpose::Nature' => 0.99
 
-   ; say "SOTA" if version from 'Protect::Whales' >= 62.0
+   ; say "SOTA" if version Package::Subroutine 'Protect::Whales' >= 62.0
 
 =head1 DESCRIPTION
 
@@ -87,7 +95,7 @@ package name, Safiest is it, the package was loaded before you
 transfer the subs around. There is a shortcut for the current
 namespace included beause you cant write
 
-   export from __PACKAGE__ => qw/foo bar/ 
+   export Package::Subroutine __PACKAGE__ => qw/foo bar/ 
    
 Things go wrong, because you really export from __PACKAGE__::
 namespace and this is seldom what you want. Please use the form 
@@ -105,7 +113,8 @@ the import facility spares the creation of extra code.
 
 Another use case is an situation where a package decides during load 
 time where the used functions come from. In such a case Exporter is not
-a good solution because it is bound to C<use> and C<@ISA>.
+a good solution because it is bound to C<use> and C<@ISA> what made 
+things a little bit harder.
 
 =head1 SEE ALSO
 
@@ -115,7 +124,8 @@ L<Exporter|Exporter>
 
 =head1 CONTRIBUTIONS
 
-Thank you, ysth from perlmonks for your suggestions. 
+Thank you, ysth from perlmonks for your suggestions. Without your this
+has never been arrived the CPAN. :) 
 
 =head1 LICENSE
 
