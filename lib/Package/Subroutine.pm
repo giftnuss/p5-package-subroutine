@@ -1,7 +1,13 @@
   package Package::Subroutine
 # ***************************
-; our $VERSION = '0.05'
+; our $VERSION = '0.06'
 # *********************
+
+; sub import
+    { my $pkg = shift()
+    ; my $ns  = (caller(0))[0]
+    ; _import_export($ns,$pkg,@_)
+    }
 
 ; sub export 
     { my $ns = (caller(1))[0]
@@ -11,9 +17,11 @@
     ; _import_export($ns,@_)
     }
 
-; sub import
-    { my $ns = (caller(0))[0]
+
+; sub mixin
+    { my $ns = (caller(0))[0];warn caller(0)
     ; shift() # rm package
+    ; warn @_
     ; _import_export($ns,@_)
     }
 
@@ -24,7 +32,7 @@
 
     ; for ( @methods )
         { my $target = "${namespace}::${_}"
-        ; my $source = "${from}::${_}"
+        ; my $source = "${from}::${_}"; warn $source
         ; *$target = \&$source
         }
     }
@@ -42,6 +50,14 @@
    { my ($pkg,$target,$name,$coderef)=@_
    ; $target="${target}::${name}"
    ; *$target = $coderef
+   }
+
+# complete exported functions
+; sub pkgname
+   { shift if @_>1
+   ; my $pkg=shift
+   ; my @pkg=split /::|'/,$pkg
+   ; join('/',@pkg).'.pm'
    }
 
 ; 1
