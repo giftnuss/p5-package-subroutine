@@ -143,6 +143,10 @@ L<Exporter|Exporter>
 Thank you, ysth from perlmonks for your suggestions. Without your this
 has never been arrived the CPAN. :) 
 
+=head1 TODO
+
+   * add trace and debug support
+
 =head1 LICENSE
 
 Perl has a free license, so this module shares it with this
