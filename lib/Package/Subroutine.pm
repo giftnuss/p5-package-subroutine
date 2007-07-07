@@ -17,11 +17,9 @@
     ; _import_export($ns,@_)
     }
 
-
 ; sub mixin
-    { my $ns = (caller(0))[0];warn caller(0)
+    { my $ns = (caller(0))[0]
     ; shift() # rm package
-    ; warn @_
     ; _import_export($ns,@_)
     }
 
@@ -32,7 +30,7 @@
 
     ; for ( @methods )
         { my $target = "${namespace}::${_}"
-        ; my $source = "${from}::${_}"; warn $source
+        ; my $source = "${from}::${_}"
         ; *$target = \&$source
         }
     }
