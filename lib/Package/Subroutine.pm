@@ -1,15 +1,9 @@
   package Package::Subroutine
 # ***************************
-; our $VERSION = '0.06'
+; our $VERSION = '0.07'
 # *********************
 
-; sub import
-    { my $pkg = shift()
-    ; my $ns  = (caller(0))[0]
-    ; _import_export($ns,$pkg,@_)
-    }
-
-; sub export 
+; sub export
     { my $ns = (caller(1))[0]
     ; shift() # rm package
     # working shortcut for __PACKAGE__
@@ -17,7 +11,7 @@
     ; _import_export($ns,@_)
     }
 
-; sub mixin
+; sub import
     { my $ns = (caller(0))[0]
     ; shift() # rm package
     ; _import_export($ns,@_)
@@ -36,7 +30,7 @@
     }
 
 ; sub version
-    { my ($f,$pkg,$num)=@_  
+    { my ($f,$pkg,$num)=@_
     ; if( defined($num) )
         { $num=eval { UNIVERSAL::VERSION($pkg,$num) }
         ; return $@ ? undef : $num
@@ -49,14 +43,22 @@
    ; $target="${target}::${name}"
    ; *$target = $coderef
    }
-
-# complete exported functions
-; sub pkgname
-   { shift if @_>1
-   ; my $pkg=shift
-   ; my @pkg=split /::|'/,$pkg
-   ; join('/',@pkg).'.pm'
+   
+; sub isdefined
+   { my ($pkg,$namespace,$subname)=@_
+   ; unless($subname)
+       { my @ns = split /\'|\:\:/, $namespace
+       ; $subname = pop @ns
+       ; $namespace = join "::",@ns
+       }
+   ; *{"${namespace}::${subname}"}{CODE} || undef
    }
+
+; sub findall
+   {} #    ; foreach ( grep { *{"${class}::${_}"}{CODE} } keys %{"${class}::"} )
+      #    {
+      #    ; warn $_
+      #    }
 
 ; 1
 
@@ -64,7 +66,7 @@ __END__
 
 =head1 NAME
 
-Package::Subroutine - minimalistic import and export modul
+Package::Subroutine - minimalistic import and export module
 
 =head1 SYNOPSIS
 
@@ -78,14 +80,14 @@ You can import too.
 
    ; import Package::Subroutine 'Various::Types' => qw/string email/
 
-And you can build a relay for your subroutines.                                 
-                                                                                
-   ; package SubRelay                                                           
-                                                                                
-   ; sub import                                                                 
-       { export Package::Subroutine FooModule => qw/foo fun/                                   
-       ; export Package::Subroutine BarPackage => qw/bar geld/                                 
-       }   
+And you can build a relay for your subroutines.
+
+   ; package SubRelay
+
+   ; sub import
+       { export Package::Subroutine FooModule => qw/foo fun/
+       ; export Package::Subroutine BarPackage => qw/bar geld/
+       }
 
 And you can get and compare version numbers with this module.
 
@@ -97,22 +99,22 @@ And you can get and compare version numbers with this module.
 
 This module provides two class methods to transfer subs
 from one namespace into another.
- 
+
 It is very simple, so it is possible that it does not work
 for you under all circumstances. Tell me please if things
-go wrong. You are also free to use the long time available 
-and stable alternatives. Anyway I hope this package finds his 
+go wrong. You are also free to use the long time available
+and stable alternatives. Anyway I hope this package finds its
 ecological niche.
 
 In each case you have at least two arguments. The first is a
-package name, Safiest is it, the package was loaded before you 
+package name.  If is safest, if the package was loaded before you
 transfer the subs around. There is a shortcut for the current
-namespace included beause you cant write
+namespace included because you can't write
 
-   export Package::Subroutine __PACKAGE__ => qw/foo bar/ 
-   
+   export Package::Subroutine __PACKAGE__ => qw/foo bar/
+
 Things go wrong, because you really export from __PACKAGE__::
-namespace and this is seldom what you want. Please use the form 
+namespace and this is seldom what you want. Please use the form
 from synopsis with one underscore.
 
 Second argument is a list of function names.
@@ -125,9 +127,9 @@ and I think in some cases, it is easier to use. I use it together
 with dynamically created packages and functions and in this area
 the import facility spares the creation of extra code.
 
-Another use case is an situation where a package decides during load 
+Another use case is an situation where a package decides during load
 time where the used functions come from. In such a case Exporter is not
-a good solution because it is bound to C<use> and C<@ISA> what made 
+a good solution because it is bound to C<use> and C<@ISA> what made
 things a little bit harder.
 
 =head1 SEE ALSO
@@ -138,12 +140,8 @@ L<Exporter|Exporter>
 
 =head1 CONTRIBUTIONS
 
-Thank you, ysth from perlmonks for your suggestions. Without your this
-has never been arrived the CPAN. :) 
-
-=head1 TODO
-
-   * add trace and debug support
+Thank you, ysth from perlmonks for your suggestions. Without you this
+would have never arrived in CPAN. :)
 
 =head1 LICENSE
 

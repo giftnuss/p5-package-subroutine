@@ -1,9 +1,8 @@
 
-package t::Tags;
+  package t::Tags
+; sub minze { 'blatt' }
 
-sub minze { 'blatt' }
-
-; 'ok'
+; 1
   
 __END__
   
