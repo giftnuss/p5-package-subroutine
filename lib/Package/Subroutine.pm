@@ -53,6 +53,21 @@
        }
    ; *{"${namespace}::${subname}"}{CODE} || undef
    }
+   
+; sub set_base_class
+   { my ($self,$thing,@base) = @_
+   ; my $class = ref $thing || $thing
+   
+   ; my %isa
+   ; $isa{$_}++ for @{"${class}::ISA"}
+   
+   ; foreach my $base (@base)
+       { next if $isa{$base}
+       ; push @{"${class}::ISA"},$base
+       ; $isa{$base}++
+       }
+   ; wantarray ? @{"${class}::ISA"} : \@{"${class}::ISA"}
+   }
 
 ; sub findall
    {} #    ; foreach ( grep { *{"${class}::${_}"}{CODE} } keys %{"${class}::"} )
@@ -97,6 +112,8 @@ And you can get and compare version numbers with this module.
 
 =head1 DESCRIPTION
 
+=head2 import and export
+
 This module provides two class methods to transfer subs
 from one namespace into another.
 
@@ -106,10 +123,18 @@ go wrong. You are also free to use the long time available
 and stable alternatives. Anyway I hope this package finds its
 ecological niche.
 
-In each case you have at least two arguments. The first is a
-package name.  If is safest, if the package was loaded before you
-transfer the subs around. There is a shortcut for the current
-namespace included because you can't write
+A use case for this module is an situation where a package 
+decides during load time where the used functions come from. 
+In such a case Exporter is not a good solution because it 
+is bound to C<use> and C<@ISA> what made things a little bit 
+harder to change things dynamically. 
+
+The inport or export needs at least two arguments. The first is a
+package name. Second argument is a list of function names.
+
+It is safest, if the package was loaded before you transfer the subs 
+around. There is a shortcut for the current namespace included because 
+you can't write
 
    export Package::Subroutine __PACKAGE__ => qw/foo bar/
 
@@ -117,20 +142,15 @@ Things go wrong, because you really export from __PACKAGE__::
 namespace and this is seldom what you want. Please use the form
 from synopsis with one underscore.
 
-Second argument is a list of function names.
+=head2 version
 
-=head1 HOW AND WHY
+    print Package::Subroutine->version('Package::Subroutine');
 
-I wish you have fun with this module, but please use it with care.
-It is not robust like the alternatives, but I hope it is faster
-and I think in some cases, it is easier to use. I use it together
-with dynamically created packages and functions and in this area
-the import facility spares the creation of extra code.
+This is a evaled wrapper around UNIVERSAL::VERSION so it will not die.
+You have seen in in synopsis how a check against a version number is
+performed.
 
-Another use case is an situation where a package decides during load
-time where the used functions come from. In such a case Exporter is not
-a good solution because it is bound to C<use> and C<@ISA> what made
-things a little bit harder.
+=head2 set_base_class
 
 =head1 SEE ALSO
 
