@@ -54,6 +54,11 @@
    ; *{"${namespace}::${subname}"}{CODE} || undef
    }
    
+; sub findsubs
+   { my ($self,$pkg)=@_
+   ; grep { *{"${class}::${_}"}{CODE} } keys %{"${class}::"}
+   }
+   
 ; sub set_base_class
    { my ($self,$thing,@base) = @_
    ; my $class = ref $thing || $thing
@@ -69,11 +74,7 @@
    ; wantarray ? @{"${class}::ISA"} : \@{"${class}::ISA"}
    }
 
-; sub findall
-   {} #    ; foreach ( grep { *{"${class}::${_}"}{CODE} } keys %{"${class}::"} )
-      #    {
-      #    ; warn $_
-      #    }
+
 
 ; 1
 
@@ -112,7 +113,7 @@ And you can get and compare version numbers with this module.
 
 =head1 DESCRIPTION
 
-=head2 import and export
+=head2 C<import and export>
 
 This module provides two class methods to transfer subs
 from one namespace into another.
@@ -142,7 +143,7 @@ Things go wrong, because you really export from __PACKAGE__::
 namespace and this is seldom what you want. Please use the form
 from synopsis with one underscore.
 
-=head2 version
+=head2 C<version>
 
     print Package::Subroutine->version('Package::Subroutine');
 
@@ -150,7 +151,7 @@ This is a evaled wrapper around UNIVERSAL::VERSION so it will not die.
 You have seen in in synopsis how a check against a version number is
 performed.
 
-=head2 set_base_class
+=head2 C<set_base_class>
 
 =head1 SEE ALSO
 

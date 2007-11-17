@@ -1,8 +1,6 @@
 0.06 - rename to Package-Subroutine
      - version and install method
-     - respwan from as syntactic sugar
-     - rename import => mixin / import is for use
-     - pkgname util function
+     - respawn from as syntactic sugar
 0.05 string syntax to import, was removed from the API 
 0.04 shortcut _ for current package
 0.03 Public release is poorly without tests.

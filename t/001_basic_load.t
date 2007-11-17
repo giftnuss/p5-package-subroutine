@@ -4,19 +4,24 @@
 ; use Test::More tests => 10
 ; use t::Tags
 
+# 01
 ; BEGIN { use_ok('Package::Subroutine','t::Tags','minze') }
 
+# 02
 ; my $r=eval { minze() }
 ; ok(!$@)
 
+# 03
 ; is($r,'blatt')
 
+# 04-06
 ; my $ref
 ; ok($ref=isdefined Package::Subroutine 't::Tags' => 'minze')
 ; ok(! isdefined Package::Subroutine 't::Tags' => 'eukalyptus')
 ; is($ref->(),'blatt')
 
-# dynamische subclasses
+# dynamic subclasses
+# 07-10
 ; package TestC
 ; sub two {2}
 ; package TestB
