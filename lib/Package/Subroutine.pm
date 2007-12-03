@@ -74,15 +74,13 @@
    ; wantarray ? @{"${class}::ISA"} : \@{"${class}::ISA"}
    }
 
-
-
 ; 1
 
 __END__
 
 =head1 NAME
 
-Package::Subroutine - minimalistic import and export module
+Package::Subroutine - minimalistic import/export and other util methods
 
 =head1 SYNOPSIS
 
