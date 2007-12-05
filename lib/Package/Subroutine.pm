@@ -55,7 +55,7 @@
    }
    
 ; sub findsubs
-   { my ($self,$pkg)=@_
+   { my ($self,$class)=@_
    ; grep { *{"${class}::${_}"}{CODE} } keys %{"${class}::"}
    }
    
