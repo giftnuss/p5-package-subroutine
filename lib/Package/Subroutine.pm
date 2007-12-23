@@ -1,6 +1,6 @@
   package Package::Subroutine
 # ***************************
-; our $VERSION = '0.07'
+; our $VERSION = '0.08'
 # *********************
 
 ; sub export
@@ -21,10 +21,14 @@
     { my $namespace = shift
     ; my $from      = shift
     ; my @methods   = @_
+    ; local $_
 
     ; for ( @methods )
-        { my $target = "${namespace}::${_}"
-        ; my $source = "${from}::${_}"
+        { my $srcm = my $trgm = $_
+        ; ($srcm,$trgm) = @$_ if ref eq 'ARRAY'
+
+        ; my $target = "${namespace}::${trgm}"
+        ; my $source = "${from}::${srcm}"
         ; *$target = \&$source
         }
     }
@@ -117,12 +121,9 @@ This module provides two class methods to transfer subs
 from one namespace into another.
 
 It is very simple, so it is possible that it does not work
-for you under all circumstances. Tell me please if things
-go wrong. You are also free to use the long time available
-and stable alternatives. Anyway I hope this package finds its
-ecological niche.
+for you under all circumstances.
 
-A use case for this module is an situation where a package 
+A use case for this module is a situation where a package 
 decides during load time where the used functions come from. 
 In such a case Exporter is not a good solution because it 
 is bound to C<use> and C<@ISA> what made things a little bit 
@@ -131,8 +132,10 @@ harder to change things dynamically.
 The inport or export needs at least two arguments. The first is a
 package name. Second argument is a list of function names.
 
-It is safest, if the package was loaded before you transfer the subs 
-around. There is a shortcut for the current namespace included because 
+C<export> takes the caller as the target namespace, import uses 
+the calling package as source namespace.
+
+There is a shortcut for the current namespace included because 
 you can't write
 
    export Package::Subroutine __PACKAGE__ => qw/foo bar/
@@ -140,6 +143,18 @@ you can't write
 Things go wrong, because you really export from __PACKAGE__::
 namespace and this is seldom what you want. Please use the form
 from synopsis with one underscore.
+
+You can change the name of the sub in the target namespace. To do so, 
+you give a array reference with the sourcename and the targetname 
+instead of the plain string name.
+
+  package Here;
+
+  export Package::Subroutine There => [loosy => 'groovy'];
+  # now is There::groovy equal Here::loosy
+
+  import Package::Subroutine There => [wild => 'wilder'];
+  # and There::wild -> Here::wilder
 
 =head2 C<version>
 
@@ -167,4 +182,4 @@ would have never arrived in CPAN. :)
 Perl has a free license, so this module shares it with this
 programming language.
 
-Copyleft 2006-2007 by Sebastian Knapp <giftnuss@netscape.net>
+Copyleft 2006-2008 by Sebastian Knapp <giftnuss@netscape.net>
