@@ -1,23 +1,22 @@
   package Package::Subroutine
 # ***************************
-; our $VERSION = '0.08'
-# *********************
-
+; our $VERSION = '0.10'
+# *********************
 ; sub export
     { my $ns = (caller(1))[0]
     ; shift() # rm package
     # working shortcut for __PACKAGE__
     ; splice(@_,0,1,"".caller) if $_[0] eq '_'
-    ; _import_export($ns,@_)
+    ; exporter($ns,@_)
     }
 
 ; sub import
     { my $ns = (caller(0))[0]
     ; shift() # rm package
-    ; _import_export($ns,@_)
+    ; exporter($ns,@_)
     }
 
-; sub _import_export
+; sub exporter
     { my $namespace = shift
     ; my $from      = shift
     ; my @methods   = @_
@@ -77,6 +76,12 @@
        }
    ; wantarray ? @{"${class}::ISA"} : \@{"${class}::ISA"}
    }
+
+; sub load_class
+    { my $pkg = shift
+    ; my $pth = join('/',split(/::/,$pkg)).'.pm'
+    ; return require $pth
+    }
 
 ; 1
 
@@ -161,10 +166,19 @@ instead of the plain string name.
     print Package::Subroutine->version('Package::Subroutine');
 
 This is a evaled wrapper around UNIVERSAL::VERSION so it will not die.
-You have seen in in synopsis how a check against a version number is
+You have seen in synopsis how a check against a version number is
 performed.
 
 =head2 C<set_base_class>
+
+=head2 Importable functions
+
+=head3 setglobal
+
+    use Package::Subroutine::Functions 'setglobal';
+    
+    setglobal(__PACKAGE__,'@EXPORT','something');
+
 
 =head1 SEE ALSO
 
