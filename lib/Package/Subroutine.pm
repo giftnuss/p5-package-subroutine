@@ -77,12 +77,6 @@
    ; wantarray ? @{"${class}::ISA"} : \@{"${class}::ISA"}
    }
 
-; sub load_class
-    { my $pkg = shift
-    ; my $pth = join('/',split(/::/,$pkg)).'.pm'
-    ; return require $pth
-    }
-
 ; 1
 
 __END__
@@ -126,16 +120,22 @@ This module provides two class methods to transfer subs
 from one namespace into another.
 
 It is very simple, so it is possible that it does not work
-for you under all circumstances.
+for you under all circumstances. Tell me please if things
+go wrong. You are also free to use the long time available
+and stable alternatives. Anyway I hope this package finds its
+ecological niche.
 
-A use case for this module is a situation where a package 
-decides during load time where the used functions come from. 
+A possible use case for this module is an situation where a package 
+decides during load time from where the used functions come from. 
 In such a case Exporter is not a good solution because it 
 is bound to C<use> and C<@ISA> what made things a little bit 
 harder to change things dynamically. 
 
 The inport or export needs at least two arguments. The first is a
 package name. Second argument is a list of function names.
+
+It is safest, if the package was loaded before you transfer the subs 
+around. There is a shortcut for the current namespace included because 
 
 C<export> takes the caller as the target namespace, import uses 
 the calling package as source namespace.
@@ -196,4 +196,4 @@ would have never arrived in CPAN. :)
 Perl has a free license, so this module shares it with this
 programming language.
 
-Copyleft 2006-2008 by Sebastian Knapp <giftnuss@netscape.net>
+Copyleft 2006-2008 by Sebastian Knapp <rock@ccls-online.de
