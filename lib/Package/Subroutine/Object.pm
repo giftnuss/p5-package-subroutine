@@ -11,7 +11,7 @@
 ; sub applymethodhash
     { my ($obj,%ms) = @_
     ; for my $m (keys %ms)
-        { $obj->$m($ms{$_})
+        { $obj->$m($ms{$m})
         }
     ; return $obj
     }
