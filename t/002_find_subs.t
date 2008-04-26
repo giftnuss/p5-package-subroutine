@@ -8,13 +8,13 @@
 use Package::Subroutine;
 my %expect  =
     ( import         => 1
+    , mixin          => 1
     , export         => 1
-    , _import_export => 1
+    , exporter       => 1
     , version        => 1
     , install        => 1
     , isdefined      => 1
     , findsubs       => 1
-    , set_base_class => 1
     );
     
 my %methods = map { ($_ => 1) }

@@ -2,17 +2,23 @@
 # **********************************
 ; our $VERSION='0.01'
 
+; sub import
+    { eval <<'__PERL__'
 ; package from
 # ************
 ; our $VERSION='0.07'
-; use Package::Subroutine 'Package::Subroutine' => qw/import export version/ 
-
-; package code
-# ************
-; our $VERSION='0.01'
-; use Package::Subroutine 'Package::Subroutine' => qw/install/
+; use Package::Subroutine 'Package::Subroutine' 
+    => qw/import export mixin version/ 
+__PERL__
+    }
+    
+; sub unimport
+    { delete $::{'from::'}
+    }
 
 ; 1
 
 __END__
+
+
 

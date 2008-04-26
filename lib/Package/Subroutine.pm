@@ -1,6 +1,6 @@
   package Package::Subroutine
 # ***************************
-; our $VERSION = '0.10'
+; our $VERSION = '0.11'
 # *********************
 ; sub export
     { my $ns = (caller(1))[0]
@@ -15,6 +15,8 @@
     ; shift() # rm package
     ; exporter($ns,@_)
     }
+
+; *mixin = \&import
 
 ; sub exporter
     { my $namespace = shift
@@ -61,21 +63,6 @@
    { my ($self,$class)=@_
    ; grep { *{"${class}::${_}"}{CODE} } keys %{"${class}::"}
    }
-   
-; sub set_base_class
-   { my ($self,$thing,@base) = @_
-   ; my $class = ref $thing || $thing
-   
-   ; my %isa
-   ; $isa{$_}++ for @{"${class}::ISA"}
-   
-   ; foreach my $base (@base)
-       { next if $isa{$base}
-       ; push @{"${class}::ISA"},$base
-       ; $isa{$base}++
-       }
-   ; wantarray ? @{"${class}::ISA"} : \@{"${class}::ISA"}
-   }
 
 ; 1
 
@@ -112,15 +99,27 @@ And you can get and compare version numbers with this module.
 
    ; say "SOTA" if version Package::Subroutine 'Protect::Whales' >= 62.0
 
+Sure, installation of a coderef is possible too.
+
+   ; install Package::Subroutine 'Cold::Inf' => nose => sub { 'hatchie' }
+
+Test if a subroutine is defined.
+
+   ; (isdefined Package::Subroutine('Cold::Inf' => 'tissue')||sub{})->()
+
+As a helper exists a method which lists all subroutines in a package.
+
+   ; print "$_\n" for Package::Subroutine->findsubs('Cold::Inf')
+
 =head1 DESCRIPTION
 
-=head2 C<import and export>
+=head2 C<import,mixin and export>
 
 This module provides two class methods to transfer subs
-from one namespace into another.
+from one namespace into another. C<mixin> is only an alias for import.
 
 It is very simple, so it is possible that it does not work
-for you under all circumstances. Tell me please if things
+for you under all circumstances. Please send a bug report if things
 go wrong. You are also free to use the long time available
 and stable alternatives. Anyway I hope this package finds its
 ecological niche.
@@ -135,10 +134,7 @@ The inport or export needs at least two arguments. The first is a
 package name. Second argument is a list of function names.
 
 It is safest, if the package was loaded before you transfer the subs 
-around. There is a shortcut for the current namespace included because 
-
-C<export> takes the caller as the target namespace, import uses 
-the calling package as source namespace.
+around. 
 
 There is a shortcut for the current namespace included because 
 you can't write
@@ -147,7 +143,8 @@ you can't write
 
 Things go wrong, because you really export from __PACKAGE__::
 namespace and this is seldom what you want. Please use the form
-from synopsis with one underscore.
+from synopsis with one underscore, when the current package is
+the source for the subroutines.
 
 You can change the name of the sub in the target namespace. To do so, 
 you give a array reference with the sourcename and the targetname 
@@ -160,6 +157,19 @@ instead of the plain string name.
 
   import Package::Subroutine There => [wild => 'wilder'];
   # and There::wild -> Here::wilder
+  
+The purpose of mixin is that your code can distinguish between
+functions and methods. The convention I suggest is to use C<mixin>
+for methods and C<import> for the rest.
+
+=head2 C<exporter>
+
+Both methods above use one function. You can use it with full
+qualified name or simply import it.
+
+This function takes three arguments, first is the target namespace,
+second is the source namespace and the third is a list of method names
+to move around.
 
 =head2 C<version>
 
@@ -169,31 +179,66 @@ This is a evaled wrapper around UNIVERSAL::VERSION so it will not die.
 You have seen in synopsis how a check against a version number is
 performed.
 
-=head2 C<set_base_class>
+=head2 C<install>
 
-=head2 Importable functions
+This mehod installs a code reference as a subroutine. First argument
+is the namespace, second the name for the subroutine and third is the
+coderef.
 
-=head3 setglobal
+=head2 C<isdefined>
 
-    use Package::Subroutine::Functions 'setglobal';
-    
-    setglobal(__PACKAGE__,'@EXPORT','something');
+This method returns like UNIVERSAL::can a code reference or C<undef>
+for a function. As argument is the full quallified function name allowed
+or a pair of package name and function name.
 
+=head2 C<findsubs>
+
+This method returns a list or an arraz with all defined functions
+for a given package.
+
+=head1 Note
+
+I know this package does not much, what is not possible with core
+functionality or other CPAN modules. But for me it seems to make some
+things easier to type and hopefully the code a little bit more
+readable.  
+
+=head2 Other helper packages
+
+=over 4
+
+=item L<Package::Subroutine::ISA>
+
+=item L<Package::Subroutine::Object>
+
+=item L<Package::Subroutine::Function>
+
+=item L<Package::Subroutine::Functions>
+
+=item L<Package::Subroutine::Sugar>
+
+=back
 
 =head1 SEE ALSO
 
-L<Sub::Install|Sub::Install>
+=over 4
 
-L<Exporter|Exporter>
+=item L<Sub::Install|Sub::Install>
+
+=item L<Exporter>
+
+=back
 
 =head1 CONTRIBUTIONS
 
 Thank you, ysth from perlmonks for your suggestions. Without you this
-would have never arrived in CPAN. :)
+would have never arrived in CPAN. :) (He was also not sure if this
+should happen anzway.)
 
 =head1 LICENSE
 
 Perl has a free license, so this module shares it with this
 programming language.
 
-Copyleft 2006-2008 by Sebastian Knapp <rock@ccls-online.de
+Copyleft 2006-2008 by Sebastian Knapp E<lt>rock@ccls-online.deE<gt>
+

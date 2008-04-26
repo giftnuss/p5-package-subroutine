@@ -1,6 +1,9 @@
+0.11 - mixin alias
+     - ISA submodule
+     - unimport for Sugar
 0.06 - rename to Package-Subroutine
      - version and install method
      - respawn from as syntactic sugar
 0.05 string syntax to import, was removed from the API 
 0.04 shortcut _ for current package
-0.03 Public release is poorly without tests.
+0.03 a public release is poorly without tests.
