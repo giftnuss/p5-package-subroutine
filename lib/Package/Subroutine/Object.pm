@@ -4,9 +4,9 @@
 # *******************
 
 ; require Exporter
-; our @ISA=qw/Exporter/
-; our @EXPORT=()
-; our @EXPORT_OK=('applymethodhash')
+; our @ISA       = qw/Exporter/
+; our @EXPORT    = ()
+; our @EXPORT_OK = ('applymethodhash')
 
 ; sub applymethodhash
     { my ($obj,%ms) = @_
