@@ -1,6 +1,6 @@
   package Package::Subroutine::Function
 # *************************************
-; our $VERSION = '0.01'
+; our $VERSION = '0.03'
 # *********************
 
 ; use strict; use warnings; use utf8
@@ -8,8 +8,13 @@
 ; require Exporter
 ; our @ISA = qw/Exporter/
 
-; our @EXPORT_OK = qw/run perform setter/
-; our @EXPORT = qw//
+; our @EXPORT_OK = qw/run perform setter applymethodhash/
+; our @EXPORT    = qw//
+; our %EXPORT_TAGS =
+    ( all => \@EXPORT_OK
+    , coderef => qw/run perform/
+    , object  => qw/setter applymethodhash/
+    )
 
 ; sub run
     { my ($ref,@args) = @_
@@ -37,6 +42,14 @@
         }
     ; return undef
     }
+
+; sub applymethodhash
+    { my ($obj,%ms) = @_
+    ; for my $m (keys %ms)
+        { $obj->$m($ms{$m})
+        }
+    ; return $obj
+    }
     
 ; 1
 
@@ -48,7 +61,7 @@ Package::Subroutine::Function
 
 =head1 SYNOPSIS
 
-    use Package::Subroutine::Function qw/run perform setter/
+    use Package::Subroutine::Function ':all'
     
     run(undef); # returns undef
     run($not_a_code_ref); # returns undef too
