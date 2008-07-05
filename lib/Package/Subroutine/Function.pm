@@ -65,7 +65,8 @@ Package::Subroutine::Function
 
 These are all tiny helper functions provided by this package.
 
-C<setter> returns undef when there are no arguments.
+C<setter> returns undef when there are no arguments otherwise it returns
+the result of the method call.
 
 =head1 AUTHOR
 

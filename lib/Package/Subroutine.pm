@@ -1,7 +1,7 @@
   package Package::Subroutine
 # ***************************
-; our $VERSION = '0.11'
-# *********************
+; our $VERSION = '0.12'
+# *********************
 ; sub export
     { my $ns = (caller(1))[0]
     ; shift() # rm package
@@ -16,7 +16,14 @@
     ; exporter($ns,@_)
     }
 
-; *mixin = \&import
+; sub mixin
+    { my $ns  = (caller(0))[0]
+    ; my $pkg = shift()
+    ; if(@_==1)
+        { push @_, $pkg->findsubs($ns)
+        }
+    ; exporter($ns,@_)
+    }
 
 ; sub exporter
     { my $namespace = shift

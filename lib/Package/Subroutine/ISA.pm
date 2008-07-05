@@ -1,10 +1,12 @@
   package Package::Subroutine::ISA
 # ********************************
+; use strict 'subs','vars'; use warnings
+# **************************************
 ; our $VERSION='0.01'
 # *******************
 
-; use Package::Subroutine 
-    ('Package::Subroutine' => 'import')
+#; use Package::Subroutine 
+#    ('Package::Subroutine' => 'import')
 
 ########################
 #   Own class methods
