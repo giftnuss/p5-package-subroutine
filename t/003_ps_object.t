@@ -14,7 +14,7 @@
 ; package main
 
 ; BEGIN
-    { use_ok('Package::Subroutine::Object',qw/applymethodhash/)
+    { use_ok('Package::Subroutine::Function',qw/applymethodhash/)
     }
 
 ; my $obj = T::two->new
