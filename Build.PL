@@ -10,6 +10,9 @@ my $builder = Module::Build->new(
 	requires => {
         'perl'          => '5.6.0'
 	},
+    requires => {
+        'Perl6::Junction' => undef, 
+    },
     build_requires => {
         'Test::More' => 0,
     },

@@ -123,9 +123,10 @@ As a helper exists a method which lists all subroutines in a package.
 =head2 C<import,mixin and export>
 
 This module provides two class methods to transfer subs
-from one namespace into another. C<mixin> is only an alias for import.
+from one namespace into another. C<mixin> is an alias for 
+import with the addition to import all subroutines from a namespace.
 
-It is very simple, so it is possible that it does not work
+The way this module works is very simple, so it is possible that it does not work
 for you under all circumstances. Please send a bug report if things
 go wrong. You are also free to use the long time available
 and stable alternatives. Anyway I hope this package finds its
@@ -167,14 +168,15 @@ instead of the plain string name.
   
 The purpose of mixin is that your code can distinguish between
 functions and methods. The convention I suggest is to use C<mixin>
-for methods and C<import> for the rest.
+for methods and C<import> for the rest. Calling mixin without the list 
+of method names imports all subs from the given namespace.
 
 =head2 C<exporter>
 
-Both methods above use one function. You can use it with full
-qualified name or simply import it.
+The methods above are using one function. This function is usable with full
+qualified name or is simply imported.
 
-This function takes three arguments, first is the target namespace,
+It takes three arguments, first is the target namespace,
 second is the source namespace and the third is a list of method names
 to move around.
 
@@ -200,7 +202,7 @@ or a pair of package name and function name.
 
 =head2 C<findsubs>
 
-This method returns a list or an arraz with all defined functions
+This method returns a list or an array with all defined functions
 for a given package.
 
 =head1 Note
@@ -247,5 +249,5 @@ should happen anzway.)
 Perl has a free license, so this module shares it with this
 programming language.
 
-Copyleft 2006-2008 by Sebastian Knapp E<lt>rock@ccls-online.deE<gt>
+Copyleft 2006-2009 by Sebastian Knapp E<lt>rock@ccls-online.deE<gt>
 
