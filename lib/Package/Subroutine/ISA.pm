@@ -5,12 +5,6 @@
 ; our $VERSION='0.01'
 # *******************
 
-#; use Package::Subroutine 
-#    ('Package::Subroutine' => 'import')
-
-########################
-#   Own class methods
-########################
 ; sub add
    { my ($self,$thing,@base) = @_
    ; my $class = ref $thing || $thing
@@ -23,7 +17,7 @@
        ; push @{"${class}::ISA"},$base
        ; $isa{$base}++
        }
-   ; wantarray ? @{"${class}::ISA"} : \@{"${class}::ISA"}
+   ; @{"${class}::ISA"}
    }
    
 ; sub remove
@@ -35,17 +29,14 @@
    ; my $class = ref $thing || $thing
    ; wantarray ? @{"${class}::ISA"} : \@{"${class}::ISA"}
    }
-########################
-#   Methods to export
-########################
-; sub isaget
-   { my ($self)
-   }
-
-
    
 ; 1
 
 __END__
 
- 
+=head1 NAME
+
+Package::Subroutine::ISA -- manipulate @ISA at runtime
+  
+=head1 SYNOPSIS
+

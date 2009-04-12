@@ -33,9 +33,7 @@ Package::Subroutine::Sugar
 
     package Ican::not::program;
    
-    import from 'Animal::Words' => qw/muh maeh meow/
-  
-    do { muh(meow()) && maeh() } # a cow sounds like a cat, followed by a goat
+    import from 'Animal::Words' => qw/moo mae meow/
 
 =head2 DESCRIPTION
 
@@ -66,6 +64,8 @@ Please have fun with it but please think twice before using it seriously.
 Sebastian Knapp, <rock@ccls-online.de>
 
 =head1 BUGS
+
+=head2 unimport
 
    ; no from # this deletes from package 
 

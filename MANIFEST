@@ -1,8 +1,6 @@
 Build.PL
 Changes
 lib/Package/Subroutine.pm
-lib/Package/Subroutine/Function.pm
-lib/Package/Subroutine/Functions.pm
 lib/Package/Subroutine/ISA.pm
 lib/Package/Subroutine/Namespace.pm
 lib/Package/Subroutine/Sugar.pm
@@ -10,7 +8,6 @@ MANIFEST
 README
 t/001_basic_load.t
 t/002_find_subs.t
-t/003_ps_object.t
 t/004_isa_manip.t
 t/005_sugar.t
 t/006_pkg_namespace.t
