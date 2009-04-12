@@ -242,7 +242,7 @@ readable.
 
 Thank you, ysth from perlmonks for your suggestions. Without you this
 would have never arrived in CPAN. :) (He was also not sure if this
-should happen anzway.)
+should happen anyway.)
 
 =head1 LICENSE
 
