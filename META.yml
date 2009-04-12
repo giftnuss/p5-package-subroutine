@@ -1,0 +1,18 @@
+---
+name: Package-Subroutine
+version: 0.14
+author:
+  - 'Sebastian Knapp <sk@computer-leipzig.com>'
+abstract: minimalistic import/export and other util package functions
+license: perl
+resources:
+  license: http://dev.perl.org/licenses/
+requires:
+  Perl6::Junction: 1.30000
+  perl: 5.6.0
+build_requires:
+  Test::More: 0
+generated_by: Module::Build version 0.2808
+meta-spec:
+  url: http://module-build.sourceforge.net/META-spec-v1.2.html
+  version: 1.2

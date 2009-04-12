@@ -1,0 +1,18 @@
+# Version Control
+\B\.svn\b
+
+# Build process
+\bblib/
+\bMakefile$
+^Build$
+^_build/
+
+# temporary or backup Files
+~$
+\.bak$
+
+# Devel::Cover
+\bcover_db\b
+
+# release
+^Package-Subroutine-\d+\.\d*\.tar\.gz$

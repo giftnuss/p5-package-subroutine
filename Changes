@@ -1,14 +1,32 @@
 Changelog of Package-Subroutine
 ###############################
 
-0.13 - documention
-0.12 - let's mixin all methods from a package easily
-0.11 - mixin alias
+0.14  Sun 12 Apr 2009
+     - test MANIFEST
+     - first roll out
+
+0.13  Sat 11 Apr 2009
+     - documention fixed
+     - incomplete sub packages moved away
+
+0.12 
+     - let's mixin all methods from a package easily
+
+0.11 
+     - mixin alias
      - ISA submodule
      - unimport for Sugar
-0.06 - rename to Package-Subroutine
+
+0.06  Sat 7 Jul 2007
+     - rename to Package-Subroutine
      - version and install method
      - respawn from as syntactic sugar
-0.05 string syntax to import, was removed from the API 
-0.04 shortcut _ for current package
-0.03 a public release is poorly without tests.
+0.05 
+     - string syntax to import, was removed from the API
+
+0.04 
+     - shortcut _ for current package
+
+0.03
+     - a public release is poorly without tests.
+
