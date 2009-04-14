@@ -3,10 +3,10 @@ use warnings;
 use Module::Build;
 
 my $builder = Module::Build->new(
-    module_name         => 'Package-Subroutine',
+    module_name         => 'Package::Subroutine',
     license             => 'perl',
     dist_author         => 'Sebastian Knapp <sk@computer-leipzig.com>',
-    dist_version        => '0.14',
+    dist_version        => '0.16_1',
     dist_abstract       =>
         'minimalistic import/export and other util package functions',
     requires => {
