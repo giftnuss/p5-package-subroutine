@@ -16,3 +16,4 @@
 
 # release
 ^Package-Subroutine-\d+\.\d*\.tar\.gz$
+^Package-Subroutine-\d+\.?\d*_\d+\.tar\.gz$

@@ -1,6 +1,6 @@
   package Package::Subroutine
 # ***************************
-; our $VERSION = '0.16_1'
+; our $VERSION = '0.16_2'
 # *********************
 ; sub export
     { my $ns = (caller(1))[0]
@@ -216,13 +216,7 @@ readable.
 
 =over 4
 
-=item L<Package::Subroutine::ISA>
-
-=item L<Package::Subroutine::Object>
-
-=item L<Package::Subroutine::Function>
-
-=item L<Package::Subroutine::Functions>
+=item L<Package::Subroutine::Namespace>
 
 =item L<Package::Subroutine::Sugar>
 
