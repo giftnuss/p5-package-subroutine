@@ -1,7 +1,16 @@
   package Package::Subroutine
 # ***************************
-; our $VERSION = '0.16_2'
+; our $VERSION = '0.16_3'
 # *********************
+; sub export_to_caller
+    { my ($self,$level) = @_
+    ; my $namespace = (caller($level))[0]
+    ; return sub
+      { my ($to,@methods) = @_
+      ; $to = caller if $to eq '_'
+      ; exporter($namespace,$to,@methods)
+      }
+    }
 ; sub export
     { my $ns = (caller(1))[0]
     ; shift() # rm package
@@ -55,7 +64,7 @@
    ; $target="${target}::${name}"
    ; *$target = $coderef
    }
-   
+
 ; sub isdefined
    { my ($pkg,$namespace,$subname)=@_
    ; unless($subname)
@@ -65,7 +74,7 @@
        }
    ; *{"${namespace}::${subname}"}{CODE} || undef
    }
-   
+
 ; sub findsubs
    { my ($self,$class)=@_
    ; grep { *{"${class}::${_}"}{CODE} } keys %{"${class}::"}
