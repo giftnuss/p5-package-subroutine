@@ -7,7 +7,7 @@
 
 # 01
 ; BEGIN { $psn = 'Package::Subroutine::Namespace'
-         ; use_ok('Package::Subroutine::Namespace') 
+         ; use_ok('Package::Subroutine::Namespace')
          }
 
 ; package W
@@ -26,7 +26,7 @@
      ; $psn->delete_childs('W')
      ; is_deeply([$psn->list_childs('W')],[],'childs deleted')
      }
-     
+
 ; package W::Q
 ; sub two { 2 }
 
@@ -39,6 +39,6 @@
     { $psn->delete_childs('W','R')
     ; is_deeply([$psn->list_childs('W')],['R'],'delete but keep one')
     }
-    
+
 ; is(W::one,1)
 

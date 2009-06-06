@@ -6,7 +6,7 @@ my $builder = Module::Build->new(
     module_name         => 'Package::Subroutine',
     license             => 'perl',
     dist_author         => 'Sebastian Knapp <sk@computer-leipzig.com>',
-    dist_version        => '0.16_2',
+    dist_version        => '0.16_3',
     dist_abstract       =>
         'minimalistic import/export and other util package functions',
     requires => {
@@ -15,6 +15,8 @@ my $builder = Module::Build->new(
     },
     build_requires => {
         'Test::More' => 0,
+        'ExtUtils::Manifest' => 0,
+        'IO::File' => 0
     },
     add_to_cleanup      => [ 'Package-Subroutine-*' ],
     create_makefile_pl  => 'traditional', 

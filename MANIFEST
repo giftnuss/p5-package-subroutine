@@ -10,6 +10,8 @@ t/001_basic_load.t
 t/002_find_subs.t
 t/005_sugar.t
 t/006_pkg_namespace.t
+t/007_export_to_caller.t
+t/095-test-spaces.t
 t/096-test-meta-yml.t
 t/097-test-manifest.t
 t/098-pod-coverage.t

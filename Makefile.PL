@@ -9,7 +9,9 @@ WriteMakefile
           'VERSION_FROM' => 'lib/Package/Subroutine.pm',
           'PREREQ_PM' => {
                            'Test::More' => 0,
-                           'Perl6::Junction' => '1.30000'
+                           'IO::File' => 0,
+                           'Perl6::Junction' => '1.30000',
+                           'ExtUtils::Manifest' => 0
                          }
         )
 ;

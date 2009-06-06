@@ -29,8 +29,8 @@
     { my $ns  = (caller(0))[0]
     ; my $pkg = shift()
     ; if(@_==1)
-        { push @_, $pkg->findsubs($ns)
-        }
+	{ push @_, $pkg->findsubs($ns)
+	}
     ; exporter($ns,@_)
     }
 
@@ -41,21 +41,21 @@
     ; local $_
 
     ; for ( @methods )
-        { my $srcm = my $trgm = $_
-        ; ($srcm,$trgm) = @$_ if ref eq 'ARRAY'
+	{ my $srcm = my $trgm = $_
+	; ($srcm,$trgm) = @$_ if ref eq 'ARRAY'
 
-        ; my $target = "${namespace}::${trgm}"
-        ; my $source = "${from}::${srcm}"
-        ; *$target = \&$source
-        }
+	; my $target = "${namespace}::${trgm}"
+	; my $source = "${from}::${srcm}"
+	; *$target = \&$source
+	}
     }
 
 ; sub version
     { my ($f,$pkg,$num)=@_
     ; if( defined($num) )
-        { $num=eval { UNIVERSAL::VERSION($pkg,$num) }
-        ; return $@ ? undef : $num
-        }
+	{ $num=eval { UNIVERSAL::VERSION($pkg,$num) }
+	; return $@ ? undef : $num
+	}
     ; eval { UNIVERSAL::VERSION($pkg) }
     }
 
@@ -107,6 +107,13 @@ And you can build a relay for your subroutines.
    ; sub import
        { export Package::Subroutine FooModule => qw/foo fun/
        ; export Package::Subroutine BarPackage => qw/bar geld/
+       ; do_export()
+       }
+
+To export not directly from import the method export_to_caller exists.
+
+   ; sub do_export
+       { export_to_caller Package::Subroutine(2)->('_' => 'mystuff')
        }
 
 And you can get and compare version numbers with this module.
@@ -132,7 +139,7 @@ As a helper exists a method which lists all subroutines in a package.
 =head2 C<import,mixin and export>
 
 This module provides two class methods to transfer subs
-from one namespace into another. C<mixin> is an alias for 
+from one namespace into another. C<mixin> is an alias for
 import with the addition to import all subroutines from a namespace.
 
 The way this module works is very simple, so it is possible that it does not work
@@ -141,19 +148,19 @@ go wrong. You are also free to use the long time available
 and stable alternatives. Anyway I hope this package finds its
 ecological niche.
 
-A possible use case for this module is an situation where a package 
-decides during load time from where the used functions come from. 
-In such a case Exporter is not a good solution because it 
-is bound to C<use> and C<@ISA> what made things a little bit 
-harder to change things dynamically. 
+A possible use case for this module is an situation where a package
+decides during load time from where the used functions come from.
+In such a case Exporter is not a good solution because it
+is bound to C<use> and C<@ISA> what made things a little bit
+harder to change things dynamically.
 
 The inport or export needs at least two arguments. The first is a
 package name. Second argument is a list of function names.
 
-It is safest, if the package was loaded before you transfer the subs 
-around. 
+It is safest, if the package was loaded before you transfer the subs
+around.
 
-There is a shortcut for the current namespace included because 
+There is a shortcut for the current namespace included because
 you can't write
 
    export Package::Subroutine __PACKAGE__ => qw/foo bar/
@@ -163,8 +170,8 @@ namespace and this is seldom what you want. Please use the form
 from synopsis with one underscore, when the current package is
 the source for the subroutines.
 
-You can change the name of the sub in the target namespace. To do so, 
-you give a array reference with the sourcename and the targetname 
+You can change the name of the sub in the target namespace. To do so,
+you give a array reference with the sourcename and the targetname
 instead of the plain string name.
 
   package Here;
@@ -174,11 +181,17 @@ instead of the plain string name.
 
   import Package::Subroutine There => [wild => 'wilder'];
   # and There::wild -> Here::wilder
-  
+
 The purpose of mixin is that your code can distinguish between
 functions and methods. The convention I suggest is to use C<mixin>
-for methods and C<import> for the rest. Calling mixin without the list 
+for methods and C<import> for the rest. Calling mixin without the list
 of method names imports all subs from the given namespace.
+
+=head2 C<export_to_caller>
+
+This method takes the level for the caller function call and return a code
+reference which wraps C<exporter> function curried with the specified
+target namespace.
 
 =head2 C<exporter>
 
@@ -219,7 +232,7 @@ for a given package.
 I know this package does not much, what is not possible with core
 functionality or other CPAN modules. But for me it seems to make some
 things easier to type and hopefully the code a little bit more
-readable.  
+readable.
 
 =head2 Other helper packages
 
@@ -253,4 +266,3 @@ Perl has a free license, so this module shares it with this
 programming language.
 
 Copyleft 2006-2009 by Sebastian Knapp E<lt>rock@ccls-online.deE<gt>
-

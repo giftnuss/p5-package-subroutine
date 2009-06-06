@@ -17,7 +17,7 @@ my %expect  =
     , findsubs       => 1
     , export_to_caller => 1
     );
-    
+
 my %methods = map { ($_ => 1) }
     Package::Subroutine->findsubs('Package::Subroutine');
 

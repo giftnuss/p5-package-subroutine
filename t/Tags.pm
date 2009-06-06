@@ -5,6 +5,5 @@
 ; sub gin { 'alk' }
 
 ; 1
-  
+
 __END__
-  

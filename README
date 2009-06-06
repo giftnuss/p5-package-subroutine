@@ -16,7 +16,7 @@ perl Build.PL
 
 
 This module contains as syntactic sugar the 'from' package.
-This module targets not library development and should only be used 
+This module targets not library development and should only be used
 for in house projects.
 
 

@@ -9,10 +9,10 @@
 
 ; sub list_childs
     { my ($self,$package) = @_
-    ; map { s/::$// ; $_ } 
+    ; map { s/::$// ; $_ }
       grep { /::$/ } keys %{"${package}::"}
     }
-    
+
 ; sub delete_childs
     { my ($self,$package,@keep) = @_
     ; for my $chld ($self->list_childs($package))
@@ -20,7 +20,7 @@
         ; delete ${"${package}::"}{"${chld}::"}
         }
     }
-    
+
 ; 1
 
 __END__
@@ -28,14 +28,14 @@ __END__
 =head1 NAME
 
 Package::Subroutine::Namespace - naive namespace utilities
-  
+
 =head1 SYNOPSIS
 
   use Package::Subroutine::Namespace;
 
   # shortcut
   my $ns = bless \my $v, 'Package::Subroutine::Namespace';
-  
+
   print "$_\n" for $ns->list_childs('Package::Subroutine');
   # should print at least: Namespace
 

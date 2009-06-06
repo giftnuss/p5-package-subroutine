@@ -2,19 +2,20 @@
 # **********************************
 ; use strict; use warnings
 # ************************
-; our $VERSION='0.01'
+; our $VERSION='0.02'
 # *******************
 
 ; sub import
     { eval <<'__PERL__'
 ; package from
 # ************
-; our $VERSION='0.07'
-; use Package::Subroutine 'Package::Subroutine' 
-    => qw/import export findsubs mixin version/ 
+; our $VERSION='0.08'
+; no warnings 'redefine'
+; use Package::Subroutine 'Package::Subroutine'
+    => qw/import export findsubs mixin version/
 __PERL__
     }
-    
+
 ; sub unimport
     { delete $::{'from::'}
     }
@@ -26,20 +27,20 @@ __END__
 =head1 NAME
 
 Package::Subroutine::Sugar
-  
+
 =head1 SYNOPSIS
 
     use Package::Subroutine::Sugar;
 
     package Ican::not::program;
-   
+
     import from 'Animal::Words' => qw/moo mae meow/
 
 =head2 DESCRIPTION
 
-This module creates the namespace C<from>. The following and methods are 
+This module creates the namespace C<from>. The following and methods are
 imported from L<Package::Subroutine>:
-  
+
 =over 4
 
 =item import
@@ -55,7 +56,7 @@ imported from L<Package::Subroutine>:
 =back
 
 As the name suggests it provides some (syntactic) sugar.
-  
+
 Please have fun with it but please think twice before using it seriously.
 
 
@@ -67,9 +68,9 @@ Sebastian Knapp, <rock@ccls-online.de>
 
 =head2 unimport
 
-   ; no from # this deletes from package 
+   ; no from # this deletes from package
 
-Unfortunatly I'm not sure if this is the right way to do it (how it is done).
+Unfortunatly I'm not sure if this is the right way to do it (how could this be done better?).
 
 Please report more bugs or feature requests to
 C<bug-package-subroutine@rt.cpan.org>, or through the web interface at
@@ -84,6 +85,3 @@ This program is free software; you can redistribute it and/or modify it
 under the same terms as Perl itself.
 
 =cut
-
-
-
