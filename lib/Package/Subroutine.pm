@@ -2,6 +2,8 @@ package Package::Subroutine;
 # ***************************
 $VERSION = 0.18
 # *************
+; no strict 'refs'
+
 ; sub export_to_caller
     { my ($self,$level) = @_
     ; my $namespace = (caller($level))[0]
@@ -158,8 +160,8 @@ ecological niche.
 A possible use case for this module is an situation where a package
 decides during load time from where the used functions come from.
 In such a case Exporter is not a good solution because it
-is bound to C<use> and C<@ISA> what made things a little bit
-harder to change things dynamically.
+is bound to C<use> and C<@ISA> what makes things a little bit
+harder to change.
 
 The inport or export needs at least two arguments. The first is a
 package name. Second argument is a list of function names.
@@ -168,7 +170,7 @@ It is safest, if the package was loaded before you transfer the subs
 around.
 
 There is a shortcut for the current namespace included because
-you can't write
+you shouldn't write
 
    export Package::Subroutine __PACKAGE__ => qw/foo bar/
 
@@ -196,15 +198,15 @@ of method names imports all subs from the given namespace.
 
 =head2 C<export_to_caller>
 
-This method takes the level for the caller function call and return a code
-reference which wraps C<exporter> function curried with the specified
+This method takes the level for the caller function call and returns a code
+reference which wraps the C<exporter> function curried with the specified
 target namespace.
 
 =head2 C<export_to>
 
 The right tool to export subroutines into an arbitrary namespace. The
-argument here is a package name, the target for the export. Like
-C<export_to_caller> it returns a code reference. This should be called with
+argument here is a package name, the target for the export. It works like
+C<export_to_caller> and returns a code reference. These should be called with
 the source namespace and the subroutine names.
 
 =head2 C<exporter>
@@ -280,3 +282,4 @@ Perl has a free license, so this module shares it with this
 programming language.
 
 Copyleft 2006-2009 by Sebastian Knapp E<lt>rock@ccls-online.deE<gt>
+

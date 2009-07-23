@@ -1,6 +1,6 @@
 ---
 name: Package-Subroutine
-version: 0.16_3
+version: 0.18
 author:
   - 'Sebastian Knapp <sk@computer-leipzig.com>'
 abstract: minimalistic import/export and other util package functions
@@ -14,6 +14,10 @@ build_requires:
   ExtUtils::Manifest: 0
   IO::File: 0
   Test::More: 0
+provides:
+  Package::Subroutine:
+    file: lib/Package/Subroutine.pm
+    version: 0.18
 generated_by: Module::Build version 0.32
 meta-spec:
   url: http://module-build.sourceforge.net/META-spec-v1.2.html
