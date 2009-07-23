@@ -1,15 +1,23 @@
-  package Package::Subroutine
+package Package::Subroutine;
 # ***************************
-; our $VERSION = '0.16_3'
-# *********************
+$VERSION = 0.18
+# *************
 ; sub export_to_caller
     { my ($self,$level) = @_
     ; my $namespace = (caller($level))[0]
     ; return sub
-      { my ($to,@methods) = @_
-      ; $to = caller if $to eq '_'
-      ; exporter($namespace,$to,@methods)
+      { my ($from,@methods) = @_
+      ; $from = caller if $from eq '_'
+      ; exporter($namespace,$from,@methods)
       }
+    }
+; sub export_to
+    { my ($self,$namespace) = @_
+    ; return sub
+        { my ($from,@methods) = @_
+        ; $from = caller if $from eq '_'
+        ; exporter($namespace,$from,@methods)
+        }
     }
 ; sub export
     { my $ns = (caller(1))[0]
@@ -43,7 +51,6 @@
     ; for ( @methods )
 	{ my $srcm = my $trgm = $_
 	; ($srcm,$trgm) = @$_ if ref eq 'ARRAY'
-
 	; my $target = "${namespace}::${trgm}"
 	; my $source = "${from}::${srcm}"
 	; *$target = \&$source
@@ -192,6 +199,13 @@ of method names imports all subs from the given namespace.
 This method takes the level for the caller function call and return a code
 reference which wraps C<exporter> function curried with the specified
 target namespace.
+
+=head2 C<export_to>
+
+The right tool to export subroutines into an arbitrary namespace. The
+argument here is a package name, the target for the export. Like
+C<export_to_caller> it returns a code reference. This should be called with
+the source namespace and the subroutine names.
 
 =head2 C<exporter>
 

@@ -6,7 +6,7 @@ my $builder = Module::Build->new(
     module_name         => 'Package::Subroutine',
     license             => 'perl',
     dist_author         => 'Sebastian Knapp <sk@computer-leipzig.com>',
-    dist_version        => '0.16_3',
+    dist_version        => '0.18',
     dist_abstract       =>
         'minimalistic import/export and other util package functions',
     requires => {
