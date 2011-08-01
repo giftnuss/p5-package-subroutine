@@ -1,6 +1,6 @@
 package Package::Subroutine;
 # ***************************
-$VERSION = 0.18
+$VERSION = 0.19
 # *************
 ; no strict 'refs'
 
@@ -39,8 +39,8 @@ $VERSION = 0.18
     { my $ns  = (caller(0))[0]
     ; my $pkg = shift()
     ; if(@_==1)
-	{ push @_, $pkg->findsubs($ns)
-	}
+    { push @_, $pkg->findsubs($ns)
+    }
     ; exporter($ns,@_)
     }
 
@@ -51,20 +51,20 @@ $VERSION = 0.18
     ; local $_
 
     ; for ( @methods )
-	{ my $srcm = my $trgm = $_
-	; ($srcm,$trgm) = @$_ if ref eq 'ARRAY'
-	; my $target = "${namespace}::${trgm}"
-	; my $source = "${from}::${srcm}"
-	; *$target = \&$source
-	}
+    { my $srcm = my $trgm = $_
+    ; ($srcm,$trgm) = @$_ if ref eq 'ARRAY'
+    ; my $target = "${namespace}::${trgm}"
+    ; my $source = "${from}::${srcm}"
+    ; *$target = \&$source
+    }
     }
 
 ; sub version
     { my ($f,$pkg,$num)=@_
     ; if( defined($num) )
-	{ $num=eval { UNIVERSAL::VERSION($pkg,$num) }
-	; return $@ ? undef : $num
-	}
+    { $num=eval { UNIVERSAL::VERSION($pkg,$num) }
+    ; return $@ ? undef : $num
+    }
     ; eval { UNIVERSAL::VERSION($pkg) }
     }
 

@@ -1,5 +1,5 @@
 
-  package t::Tags
+  package Tags
 ; sub minze { 'blatt' }
 
 ; sub gin { 'alk' }

@@ -40,5 +40,5 @@
     ; is_deeply([$psn->list_childs('W')],['R'],'delete but keep one')
     }
 
-; is(W::one,1)
+; is(W::one,1,'test "one" in W')
 

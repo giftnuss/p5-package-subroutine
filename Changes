@@ -1,5 +1,8 @@
 Changelog of Package-Subroutine
 ###############################
+0.19
+     - delete t/09*-tests in favor of a xt directory
+
 0.18 Thu 23 Jul 2009
      - export_to method
 
