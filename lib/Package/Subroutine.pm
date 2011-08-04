@@ -1,7 +1,7 @@
 package Package::Subroutine;
 # ***************************
-$VERSION = 0.19
-# *************
+$VERSION = '0.19';
+# ****************
 ; no strict 'refs'
 
 ; sub export_to_caller

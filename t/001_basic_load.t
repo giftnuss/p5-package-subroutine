@@ -2,10 +2,11 @@
 
 ; use strict
 ; use Test::More tests => 6
-; use t::Tags
+; use lib 't/lib'
+; use Tags
 
 # 01
-; BEGIN { use_ok('Package::Subroutine','t::Tags','minze') }
+; BEGIN { use_ok('Package::Subroutine','Tags','minze') }
 
 # 02
 ; my $r=eval { minze() }
@@ -16,6 +17,6 @@
 
 # 04-06
 ; my $ref
-; ok($ref=isdefined Package::Subroutine 't::Tags' => 'minze')
-; ok(! isdefined Package::Subroutine 't::Tags' => 'eukalyptus')
+; ok($ref=isdefined Package::Subroutine 'Tags' => 'minze')
+; ok(! isdefined Package::Subroutine 'Tags' => 'eukalyptus')
 ; is($ref->(),'blatt')
