@@ -1,7 +1,13 @@
 Changelog of Package-Subroutine
 ###############################
-0.19
+
+0.20 Do 4. Aug 23:16:50 CEST 2011
+     - released with ShipIt
+     - removed xt/critic.t - because this modul is build around bad practice
+ 
+0.19 Do 4. Aug 23:01:00 CEST 2011
      - delete t/09*-tests in favor of a xt directory
+     - check if it works with aliased
 
 0.18 Thu 23 Jul 2009
      - export_to method
