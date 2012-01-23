@@ -1,6 +1,11 @@
 Changelog of Package-Subroutine
 ###############################
 
+0.21
+     - Add Class::ISA as requirement
+     - new class methods findmethods and remove
+     - BUGFIX: mixin code was plain wrong
+
 0.20 Do 4. Aug 23:16:50 CEST 2011
      - released with ShipIt
      - removed xt/critic.t - because this modul is build around bad practice

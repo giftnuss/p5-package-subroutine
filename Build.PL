@@ -11,7 +11,8 @@ my $builder = Module::Build->new(
         'minimalistic import/export and other util package functions',
     requires => {
         'perl'          => '5.6.0',
-        'Perl6::Junction' => '1.30000', 
+        'Perl6::Junction' => '1.30000',
+        'Class::ISA' => '0.36'
     },
     build_requires => {
         'Test::More' => 0,

@@ -17,6 +17,7 @@ my %expect  =
     , findsubs       => 1
     , export_to_caller => 1
     , export_to      => 1
+    , findmethods    => 1
     );
 
 my %methods = map { ($_ => 1) }
