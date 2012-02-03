@@ -1,7 +1,7 @@
 package Package::Subroutine;
-# ***************************
-$VERSION = '0.21_1';
-# ******************
+# **************************
+$VERSION = '0.21';
+# ****************
 ; no strict 'refs'
 
 ; use Class::ISA ()
@@ -255,6 +255,11 @@ or a pair of package name and function name.
 This method returns a list or an array with all defined functions
 for a given package.
 
+=head2 C<findmethods>
+
+Simliar to findsubs but reads all classes in C<@ISA> plus UNIVERSAL.
+L<Class::ISA> is used for the task to list all subclasses.
+
 =head1 Note
 
 I know this package does not much, what is not possible with core
@@ -280,6 +285,10 @@ readable.
 
 =item L<Exporter>
 
+=item L<Class::Inspector>
+
+The C<methods> method has much more features than findmethods.
+
 =back
 
 =head1 CONTRIBUTIONS
@@ -293,5 +302,5 @@ should happen anyway.)
 Perl has a free license, so this module shares it with this
 programming language.
 
-Copyleft 2006-2011 by Sebastian Knapp E<lt>rock@ccls-online.deE<gt>
+Copyleft 2006-2012 by Sebastian Knapp E<lt>rock@ccls-online.deE<gt>
 
