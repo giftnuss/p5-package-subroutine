@@ -21,3 +21,4 @@
 ^Package-Subroutine-\d+\.?\d*_\d+\.tar\.gz$
 ^MYMETA.yml$
 ^.shipit$
+^MYMETA\.json$
