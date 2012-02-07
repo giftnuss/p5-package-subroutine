@@ -1,7 +1,7 @@
 Changelog of Package-Subroutine
 ###############################
 
-0.21
+0.21 Mi 8. Feb 2012
      - Add Class::ISA as requirement
      - new class methods findmethods and remove
      - BUGFIX: mixin code was plain wrong

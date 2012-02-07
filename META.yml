@@ -1,14 +1,15 @@
 ---
 abstract: 'minimalistic import/export and other util package functions'
 author:
-  - 'Sebastian Knapp <sk@computer-leipzig.com>'
+  - 'Sebastian Knapp <rock@ccls-online.de>'
 build_requires:
   ExtUtils::Manifest: 0
   IO::File: 0
   Test::More: 0
 configure_requires:
-  Module::Build: 0.36
-generated_by: 'Module::Build version 0.3603'
+  Module::Build: 0.38
+dynamic_config: 1
+generated_by: 'Module::Build version 0.38, CPAN::Meta::Converter version 2.112150'
 license: perl
 meta-spec:
   url: http://module-build.sourceforge.net/META-spec-v1.4.html
@@ -17,10 +18,11 @@ name: Package-Subroutine
 provides:
   Package::Subroutine:
     file: lib/Package/Subroutine.pm
-    version: 0.20
+    version: 0.21
 requires:
+  Class::ISA: 0
   Perl6::Junction: 1.30000
   perl: v5.6.0
 resources:
   license: http://dev.perl.org/licenses/
-version: 0.20
+version: 0.21
