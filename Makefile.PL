@@ -3,17 +3,17 @@ require 5.006000;
 use ExtUtils::MakeMaker;
 WriteMakefile
 (
-  'PL_FILES' => {},
-  'INSTALLDIRS' => 'site',
   'NAME' => 'Package::Subroutine',
-  'EXE_FILES' => [],
   'VERSION_FROM' => './lib/Package/Subroutine.pm',
   'PREREQ_PM' => {
-                   'Test::More' => 0,
-                   'IO::File' => 0,
                    'Class::ISA' => '0',
+                   'ExtUtils::Manifest' => 0,
+                   'IO::File' => 0,
                    'Perl6::Junction' => '1.30000',
-                   'ExtUtils::Manifest' => 0
-                 }
+                   'Test::More' => 0
+                 },
+  'INSTALLDIRS' => 'site',
+  'EXE_FILES' => [],
+  'PL_FILES' => {}
 )
 ;

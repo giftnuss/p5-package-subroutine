@@ -1,6 +1,9 @@
 Changelog of Package-Subroutine
 ###############################
 
+0.21.1 Di 28. Feb. 2012
+     - add DOES to tested methods only if it exists
+
 0.21 Mi 8. Feb 2012
      - Add Class::ISA as requirement
      - new class methods findmethods and remove

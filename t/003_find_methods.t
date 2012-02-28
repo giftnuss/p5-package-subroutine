@@ -18,7 +18,11 @@ package main;
 
 my @expect  = sort qw/ import mixin export exporter version install
     isdefined findsubs export_to_caller export_to findmethods
-    DOES VERSION can isa /;
+    VERSION can isa /;
+
+if(UNIVERSAL->can('DOES')) {
+    unshift(@expect,'DOES');
+}
 
 my @have = sort Package::Subroutine->findmethods('T::Base');
 
