@@ -1,6 +1,9 @@
 Changelog of Package-Subroutine
 ###############################
 
+0.22.1/0.22.2 Mi 29. Feb. 2012
+     - increase version number
+
 0.21.1 Di 28. Feb. 2012
      - add DOES to tested methods only if it exists
 

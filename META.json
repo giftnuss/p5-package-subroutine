@@ -4,7 +4,7 @@
       "Sebastian Knapp <rock@ccls-online.de>"
    ],
    "dynamic_config" : 1,
-   "generated_by" : "Module::Build version 0.38, CPAN::Meta::Converter version 2.112150",
+   "generated_by" : "Module::Build version 0.4, CPAN::Meta::Converter version 2.112150",
    "license" : [
       "perl_5"
    ],
@@ -23,7 +23,7 @@
       },
       "configure" : {
          "requires" : {
-            "Module::Build" : "0.38"
+            "Module::Build" : "0.4"
          }
       },
       "runtime" : {
@@ -37,7 +37,7 @@
    "provides" : {
       "Package::Subroutine" : {
          "file" : "lib/Package/Subroutine.pm",
-         "version" : "v0.21.1"
+         "version" : "v0.22.2"
       }
    },
    "release_status" : "stable",
@@ -46,5 +46,5 @@
          "http://dev.perl.org/licenses/"
       ]
    },
-   "version" : "v0.21.1"
+   "version" : "v0.22.2"
 }
