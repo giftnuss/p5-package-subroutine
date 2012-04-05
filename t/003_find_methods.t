@@ -1,7 +1,7 @@
 
 use strict;
 use warnings;
-use Test::More tests => 3;
+use Test::More tests => 4;
 
 BEGIN {
   use_ok('Package::Subroutine');
@@ -31,3 +31,19 @@ is_deeply(\@have,\@expect,'methods found');
 my @have2 = sort Package::Subroutine->findmethods('T::Plus');
 
 is_deeply(\@have2,\@expect,'methods found');
+
+{
+   no strict 'refs';
+   no warnings 'redefine';
+   my $orig = \&Package::Subroutine::findsubs;
+   my @classes;
+   local *Package::Subroutine::findsubs = sub {
+       my ($self,$class) = @_;
+       push @classes,$class;
+       $orig->($self,$class);
+   };
+
+   Package::Subroutine->findmethods('T::Plus');
+   my @expect = qw/UNIVERSAL Package::Subroutine T::Plus/;
+   is_deeply(\@classes,\@expect,'classes');
+}
