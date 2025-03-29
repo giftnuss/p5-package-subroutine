@@ -1,0 +1,3 @@
+Devel::Cover~1.44
+aliased~0
+Test::Warnings~0
