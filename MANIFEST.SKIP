@@ -1,6 +1,8 @@
 # personal
+requirements.txt
 requirements-dev.txt
 install.sh
+coverage.sh
 ENV.sh
 \bvendor/
 
