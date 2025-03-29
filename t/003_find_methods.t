@@ -22,6 +22,12 @@ my @expect  = sort qw/ import mixin export exporter version install
 
 if(UNIVERSAL->can('DOES')) {
     unshift(@expect,'DOES');
+    @expect = sort @expect;
+}
+
+if(UNIVERSAL->can('unimport')) {
+    unshift(@expect,'unimport');
+    @expect = sort @expect;
 }
 
 my @have = sort Package::Subroutine->findmethods('T::Base');
