@@ -1,6 +1,13 @@
+# personal
+requirements-dev.txt
+install.sh
+ENV.sh
+\bvendor/
+
 # Version Control
 \B\.svn\b
 ^.git/
+^.gitignore
 
 # Build process
 \bblib/
