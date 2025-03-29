@@ -1,6 +1,7 @@
 # personal
 requirements.txt
 requirements-dev.txt
+requirements-release.txt
 install.sh
 coverage.sh
 ENV.sh
@@ -17,6 +18,7 @@ ENV.sh
 ^Build$
 ^_build/
 ^pm_to_blib
+^pod2htmd.tmp
 
 # temporary or backup Files
 ~$
