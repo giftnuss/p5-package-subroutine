@@ -1,0 +1,7 @@
+Test::Pod~0
+Perl::MinimumVersion~0
+Test::MinimumVersion~0.008
+Test::Pod::Coverage~0
+Test::DistManifest~1.003
+Test::HasVersion~0.012
+Test::CPAN::Meta~0.12
