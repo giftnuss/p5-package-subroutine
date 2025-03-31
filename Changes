@@ -1,7 +1,10 @@
 Changelog of Package-Subroutine
 ###############################
 
-0.22.4 2025-03-31
+0.22.5 2025-03-31
+     - improve test which checks import call on unknown package
+
+0.22.4 2025-03-29
      - fix test for recent perl where unimport is a method in UNIVERSAL
 
 0.22.1/0.22.2 Mi 29. Feb. 2012
