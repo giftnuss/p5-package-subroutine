@@ -1,6 +1,12 @@
 Changelog of Package-Subroutine
 ###############################
 
+0.23.0
+     - Package::Subroutine::Namespaces is strict refs compatible
+     - wrong named methods list_childs and delete_childs renamed
+       THIS IS A COMPATIBILITY CHANGE!
+     - Tests are using Test2::Suite
+
 0.22.5 2025-03-31
      - improve test which checks import call on unknown package
 
