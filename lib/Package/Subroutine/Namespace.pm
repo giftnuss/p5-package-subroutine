@@ -1,22 +1,38 @@
   package Package::Subroutine::Namespace
 # **************************************
-; our $VERSION='0.01'
+; use strict; use warnings
+; our $VERSION='0.10'
 # *******************
-; use strict ('vars','subs')
-; use warnings
 
 ; use Perl6::Junction ()
 
-; sub list_childs
+; our $ROOT = \%::
+; our %namespace
+
+; sub list_namespaces ($$)
     { my ($self,$package) = @_
+    ; local %namespace = %$ROOT
+    ; $package =~ s/::$//
+    ; my @path = split /::/, $package
+    ; while(my $pkg = shift @path)
+        { if(exists $namespace{"${pkg}::"})
+            { %namespace = %{$namespace{$pkg."::"}}
+            }
+          else
+            { return ()
+            }
+        }
     ; map { s/::$// ; $_ }
-      grep { /::$/ } keys %{"${package}::"}
+      grep { /::$/ } keys %namespace
     }
 
-; sub delete_childs
+; sub delete_namespaces
     { my ($self,$package,@keep) = @_
-    ; for my $chld ($self->list_childs($package))
+    ; my @children = $self->list_namespaces($package)
+    ; for my $chld (@children)
         { next if $chld eq Perl6::Junction::any(@keep)
+        ; no strict 'refs'
+        #; warn $chld,$package
         ; delete ${"${package}::"}{"${chld}::"}
         }
     }
@@ -51,7 +67,7 @@ Class method to list all child namespaces for a given namespace.
 =head2 delete_childs
 
 Deletes sub namespaces from a namespace, takes an optional
-list namespace names which are saved from extinction.
+list with namespace child names which are saved from extinction.
 
 Removing is done simply with builtin delete function.
 
@@ -64,4 +80,4 @@ Sebastian Knapp
 Perl has a free license, so this module shares it with this
 programming language.
 
-Copyleft 2006-2009 by Sebastian Knapp E<lt>rock@ccls-online.deE<gt>
+Copyleft 2006-2009,2025 by Sebastian Knapp E<lt>news@young-workers.deE<gt>
