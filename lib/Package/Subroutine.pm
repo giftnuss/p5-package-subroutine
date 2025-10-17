@@ -1,6 +1,6 @@
 package Package::Subroutine;
 # **************************
-$VERSION = '0.22.005';
+$VERSION = '0.23.000';
 # ****************
 ; no strict 'refs'
 
