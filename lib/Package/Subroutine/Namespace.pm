@@ -4,6 +4,7 @@
 ; our $VERSION='0.10'
 # *******************
 
+; use Carp ()
 ; use Perl6::Junction ()
 
 ; our $ROOT = \%::
@@ -19,7 +20,8 @@
             { %namespace = %{$namespace{$pkg."::"}}
             }
           else
-            { return ()
+            { Carp::carp("Package \"$package\" not available.")
+            ; return ()
             }
         }
     ; map { s/::$// ; $_ }
@@ -28,12 +30,22 @@
 
 ; sub delete_namespaces
     { my ($self,$package,@keep) = @_
+    ; $package =~ s/::$//
+    ; my @path = split /::/, $package
     ; my @children = $self->list_namespaces($package)
+    ; my $namespace = $ROOT
+    ; while(my $pkg = shift @path)
+        { if(exists $namespace->{"${pkg}::"})
+            { $namespace = \%{$namespace->{"${pkg}::"}}
+            }
+          else
+            { Carp::carp("Package \"$package\" not found.")
+            ; return
+            }
+        } 
     ; for my $chld (@children)
         { next if $chld eq Perl6::Junction::any(@keep)
-        ; no strict 'refs'
-        #; warn $chld,$package
-        ; delete ${"${package}::"}{"${chld}::"}
+        ; delete $namespace->{"${chld}::"}
         }
     }
 
@@ -52,19 +64,19 @@ Package::Subroutine::Namespace - naive namespace utilities
   # shortcut
   my $ns = bless \my $v, 'Package::Subroutine::Namespace';
 
-  print "$_\n" for $ns->list_childs('Package::Subroutine');
+  print "$_\n" for $ns->list_namespaces('Package::Subroutine');
   # should print at least: Namespace
 
-  $ns->delete_childs('Package::Subroutine','Namespace');
+  $ns->delete_namespaces('Package::Subroutine','Namespace');
   # deletes sub namespaces, but keeps the Namespace module intact
 
 =head1 DESCRIPTION
 
-=head2 list_childs
+=head2 list_namespaces
 
-Class method to list all child namespaces for a given namespace.
+Class method to list all namespaces in a given package.
 
-=head2 delete_childs
+=head2 delete_namespaces
 
 Deletes sub namespaces from a namespace, takes an optional
 list with namespace child names which are saved from extinction.
@@ -80,4 +92,4 @@ Sebastian Knapp
 Perl has a free license, so this module shares it with this
 programming language.
 
-Copyleft 2006-2009,2025 by Sebastian Knapp E<lt>news@young-workers.deE<gt>
+Copyleft 2006-2009,2025 by Sebastian Knapp E<lt>sknpp@cpan.orgE<gt>
