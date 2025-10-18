@@ -1,6 +1,5 @@
 # test load of package
 
-; use strict
 ; use Test2::V0
 ; BEGIN { plan(5) }
 
