@@ -1,8 +1,8 @@
-  package Package::Subroutine::Namespace
-# **************************************
-; use strict; use warnings
-; our $VERSION='0.10'
-# *******************
+  package Package::Subroutine::Namespace;
+# ***************************************
+  use strict; use warnings;
+  our $VERSION='0.10';
+# ********************
 
 ; use Carp ()
 ; use Perl6::Junction ()

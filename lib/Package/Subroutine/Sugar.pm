@@ -1,9 +1,9 @@
-  package Package::Subroutine::Sugar
-# **********************************
-; use strict; use warnings
-# ************************
-; our $VERSION='0.02'
-# *******************
+  package Package::Subroutine::Sugar;
+# ***********************************
+  use strict; use warnings;
+# *************************
+  our $VERSION=v0.02.001;
+# ***********************
 
 ; sub import
     { eval <<'__PERL__'
@@ -62,7 +62,7 @@ Please have fun with it but please think twice before using it seriously.
 
 =head1 AUTHOR
 
-Sebastian Knapp, <rock@ccls-online.de>
+Sebastian Knapp, <sknpp@cpan.org>
 
 =head1 BUGS
 
@@ -70,7 +70,8 @@ Sebastian Knapp, <rock@ccls-online.de>
 
    ; no from # this deletes from package
 
-Unfortunatly I'm not sure if this is the right way to do it (how could this be done better?).
+Unfortunatly I'm not sure if this is the right way to do it (how could this 
+be done better?).
 
 Please report more bugs or feature requests to
 C<bug-package-subroutine@rt.cpan.org>, or through the web interface at

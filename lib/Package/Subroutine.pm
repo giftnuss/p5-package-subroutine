@@ -1,7 +1,8 @@
 package Package::Subroutine;
 # **************************
-$VERSION = '0.23.000';
-# ****************
+use strict; use warnings;
+our $VERSION = v0.23.000;
+# ***********************
 ; no strict 'refs'
 
 ; use Class::ISA ()
