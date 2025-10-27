@@ -14,3 +14,4 @@ fi
 
 cpanm -L vendor $FROM --self-contained <requirements.txt
 cpanm -L vendor $FROM --self-contained <requirements-dev.txt
+cpanm -L vendor $FROM --self-contained <requirements-release.txt
