@@ -1,7 +1,7 @@
 package Package::Subroutine;
 # **************************
 use strict; use warnings;
-our $VERSION = v0.23.000;
+our $VERSION = 'v0.23.1';
 # ***********************
 ; no strict 'refs'
 
