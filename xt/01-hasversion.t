@@ -1,31 +1,22 @@
 #!/usr/bin/perl
 
 # Test that all modules have a version number
-use strict;
-BEGIN {
-	$|  = 1;
-	$^W = 1;
-}
+use Test2::V0;
 
-my @MODULES = (
-	'Test::HasVersion 0.012',
-);
+use Test::Version 1.001001 qw( version_all_ok ), {
+    is_strict   => 0,
+    has_version => 1,
+    consistent  => 0,
+    ignore_unindexable => 0,
+};
+
 
 # Don't run tests during end-user installs
-use Test::More;
-plan( skip_all => 'Author tests not required for installation' )
+skip_all('Author tests not required for installation')
 	unless ( $ENV{RELEASE_TESTING} or $ENV{AUTOMATED_TESTING} );
 
-# Load the testing modules
-foreach my $MODULE ( @MODULES ) {
-	eval "use $MODULE";
-	if ( $@ ) {
-		$ENV{RELEASE_TESTING}
-		? die( "Failed to load required release-testing module $MODULE" )
-		: plan( skip_all => "$MODULE not available for testing" );
-	}
-}
+plan(4);
 
-all_pm_version_ok();
+version_all_ok();
 
 1;
