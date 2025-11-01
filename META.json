@@ -46,7 +46,7 @@
       },
       "Package::Subroutine::Sugar" : {
          "file" : "lib/Package/Subroutine/Sugar.pm",
-         "version" : "v0.2.1"
+         "version" : "v0.2.2"
       }
    },
    "release_status" : "stable",
