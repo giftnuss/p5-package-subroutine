@@ -2,9 +2,10 @@
 # ***********************************
   use strict; use warnings;
 # *************************
-  our $VERSION=v0.02.001;
+  our $VERSION=v0.02.002;
 # ***********************
 
+## no critic
 ; sub import
     { eval <<'__PERL__'
 ; package from
@@ -15,6 +16,7 @@
     => qw/import export findsubs mixin version/
 __PERL__
     }
+## use critic
 
 ; sub unimport
     { delete $::{'from::'}

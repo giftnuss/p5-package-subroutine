@@ -10,7 +10,7 @@
 ; our $ROOT = \%::
 ; our %namespace
 
-; sub list_namespaces ($$)
+; sub list_namespaces
     { my ($self,$package) = @_
     ; local %namespace = %$ROOT
     ; $package =~ s/::$//
@@ -24,7 +24,7 @@
             ; return ()
             }
         }
-    ; map { s/::$// ; $_ }
+    ; map { s/::$// ; $_ } ## no critic
       grep { /::$/ } keys %namespace
     }
 
