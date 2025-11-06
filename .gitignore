@@ -7,3 +7,4 @@ cover_db/
 vendor/
 MANIFEST.bak
 pod2htmd.tmp
+*.tar.gz
