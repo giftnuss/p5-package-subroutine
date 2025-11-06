@@ -10,11 +10,15 @@ package Exp::From;
 sub import { &import2 }
 
 sub import2 {
-  export_to_caller Package::Subroutine(2)->('_' => qw/one two/)
+  export_to_caller Package::Subroutine::(2)
+      ->( _ => qw/one two/);
+  export_to_caller Package::Subroutine::(2)
+      ->('Exp::From' => qw/three/);
 }
 
 sub one { 1 }
 sub two { 2 }
+sub three { 3 }
 
 package Exp::To;
 Exp::From->import;

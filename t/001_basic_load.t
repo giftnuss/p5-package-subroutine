@@ -17,6 +17,6 @@
 
 # 04-06
 ; my $ref
-; ok($ref=isdefined Package::Subroutine 'Tags' => 'minze')
-; ok(! isdefined Package::Subroutine 'Tags' => 'eukalyptus')
+; ok($ref=isdefined Package::Subroutine:: 'Tags' => 'minze')
+; ok(! isdefined Package::Subroutine:: 'Tags' => 'eukalyptus')
 ; is($ref->(),'blatt')
