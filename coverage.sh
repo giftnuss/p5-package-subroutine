@@ -14,8 +14,9 @@ if ! type $COVER 2>/dev/null ; then
     COVER=vendor/bin/cover
 fi
 
-$COVER +ignore_re ^t/.*\.t \
-       +ignore_re ^.*/prove\$ \
-       +ignore_re ^site-lib/ \
-       +ignore_re ^vendor/ \
+$COVER +ignore_re '^t/.*\.t' \
+       +ignore_re '^t/lib/.*' \
+       +ignore_re '^.*/prove\$' \
+       +ignore_re '^site-lib/' \
+       +ignore_re '^vendor/' \
        -report html
