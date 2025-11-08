@@ -1,7 +1,7 @@
 
 use Test2::V0;
 
-plan(2);
+plan(3);
 
 use Package::Subroutine;
 
@@ -27,3 +27,4 @@ package main;
 
 is(&Exp::To::one,1);
 is(&Exp::To::two,2);
+is(&Exp::To::three,3);
